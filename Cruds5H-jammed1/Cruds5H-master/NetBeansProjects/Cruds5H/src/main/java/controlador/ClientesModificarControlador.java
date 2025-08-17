@@ -16,9 +16,8 @@ public class ClientesModificarControlador implements ActionListener {
     private final ClientesModificar view;
     private final Connection con;
 
-    // Botones privados en la vista (acceso por reflection)
-    private JButton btnListo;     // jButton1
-    private JButton btnRegresar;  // jButton2
+    private JButton btnListo;     
+    private JButton btnRegresar;  
 
     private static final Pattern EMAIL_RX =
             Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
