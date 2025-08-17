@@ -41,12 +41,6 @@ public class ClientesControlador implements ActionListener {
             m.setLocationRelativeTo(view);
             m.setVisible(true);
             view.dispose();
-//        } else if (src == view.jButtonActualizar) {
-//            actualizarCliente();
-//        } else if (src == view.jButtonEliminar) {
-//            eliminarCliente();
-//        } else if (src == view.jButtonListar) {
-//            listarClientes();
         }
     }
 
@@ -125,96 +119,5 @@ public class ClientesControlador implements ActionListener {
         view.jTextField3.setText("");
         view.jTextField4.setText(""); 
         view.jTextField2.requestFocus();
-    }
-
-    // ========================= NUEVOS MÉTODOS CRUD =========================
-
-    private void actualizarCliente() {
-        try {
-            int id = Integer.parseInt(view.jTextField1.getText());
-            String nombre = view.jTextField2.getText().trim();
-            String correo = view.jTextField3.getText().trim();
-            String telefono = view.jTextField4.getText().trim();
-
-            if (nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(view, "El nombre es obligatorio.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                view.jTextField2.requestFocus();
-                return;
-            }
-
-            if (!correo.isEmpty()) {
-                correo = correo.toLowerCase();
-                if (!EMAIL_RX.matcher(correo).matches()) {
-                    JOptionPane.showMessageDialog(view, "Correo inválido.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                    view.jTextField3.requestFocus();
-                    return;
-                }
-            } else {
-                correo = null;
-            }
-
-            String sql = "UPDATE clientes SET nombre=?, correo=?, telefono=? WHERE idcliente=?";
-            try (PreparedStatement ps = con.prepareStatement(sql)) {
-                ps.setString(1, nombre);
-                if (correo == null) ps.setNull(2, Types.VARCHAR); else ps.setString(2, correo);
-                if (telefono.isEmpty()) ps.setNull(3, Types.VARCHAR); else ps.setString(3, telefono);
-                ps.setInt(4, id);
-
-                int res = ps.executeUpdate();
-                if (res > 0) {
-                    JOptionPane.showMessageDialog(view, "Cliente actualizado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
-                    limpiarDespuesDeGuardar();
-                } else {
-                    JOptionPane.showMessageDialog(view, "No se encontró cliente con ese ID.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(view, "ID inválido.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(view, "Error SQL (" + e.getSQLState() + "): " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void eliminarCliente() {
-        try {
-            int id = Integer.parseInt(view.jTextField1.getText());
-            int opcion = JOptionPane.showConfirmDialog(view, "¿Desea eliminar el cliente?", "Confirmar", JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                String sql = "DELETE FROM clientes WHERE idcliente=?";
-                try (PreparedStatement ps = con.prepareStatement(sql)) {
-                    ps.setInt(1, id);
-                    int res = ps.executeUpdate();
-                    if (res > 0) {
-                        JOptionPane.showMessageDialog(view, "Cliente eliminado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
-                        limpiarDespuesDeGuardar();
-                        view.jTextField1.setText("");
-                    } else {
-                        JOptionPane.showMessageDialog(view, "No se encontró cliente con ese ID.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(view, "ID inválido.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(view, "Error SQL (" + e.getSQLState() + "): " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void listarClientes() {
-//        String sql = "SELECT idcliente, nombre, correo, telefono FROM clientes ORDER BY idcliente";
-//        try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
-//            view.jTextArea1.setText(""); // tu área de texto
-//            while (rs.next()) {
-//                view.jTextArea1.append(
-//                    rs.getInt("idcliente") + " - " +
-//                    rs.getString("nombre") + " - " +
-//                    rs.getString("correo") + " - " +
-//                    rs.getString("telefono") + "\n"
-//                );
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(view, "Error al listar clientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
     }
 }
