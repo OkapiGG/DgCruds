@@ -4,18 +4,32 @@
  */
 package Vista;
 
+import controlador.ProveedoresControlador;
+import controlador.VentasControlador;
+import java.sql.Connection;
+import modelo.conexion;
+
+
 /**
  *
  * @author jammed
  */
 public class Ventas extends javax.swing.JFrame {
 
+
     /**
      * Creates new form Ventas
      */
     public Ventas() {
-        initComponents();
+    initComponents();
+    try {
+        Connection con = conexion.getInstancia().getConexion();
+        new VentasControlador(this, con);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
