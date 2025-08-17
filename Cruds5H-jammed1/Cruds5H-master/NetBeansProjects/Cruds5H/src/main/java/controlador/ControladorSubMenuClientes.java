@@ -14,38 +14,36 @@ public class ControladorSubMenuClientes implements ActionListener {
 
     public ControladorSubMenuClientes(SubMenuClientes subMenu) {
         this.subMenu = subMenu;
-        subMenu.jButton1.addActionListener(this);
-        subMenu.jButton2.addActionListener(this); 
-        subMenu.jButton3.addActionListener(this); 
+
+        subMenu.jButton1.addActionListener(this); 
+        subMenu.jButton3.addActionListener(this);
         subMenu.jButton4.addActionListener(this); 
+
+    
+        subMenu.jButton2.setEnabled(false);
+        subMenu.jButton2.setToolTipText("No disponible por ahora");
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
 
-        if (src == subMenu.jButton1) {          
+        if (src == subMenu.jButton1) {         
             Clientes v = new Clientes();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             v.setVisible(true);
             subMenu.dispose();
 
-        } else if (src == subMenu.jButton2) {     
+        } else if (src == subMenu.jButton3) {   
             ClientesModificar v = new ClientesModificar();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             v.setVisible(true);
             subMenu.dispose();
 
-        } else if (src == subMenu.jButton3) {     
-            ClientesModificar v = new ClientesModificar();
-            v.setLocationRelativeTo(subMenu);
-            v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            v.setVisible(true);
-            subMenu.dispose();
-
-        } else if (src == subMenu.jButton4) {    
+        } else if (src == subMenu.jButton4) {   
             ClientesEliminar v = new ClientesEliminar();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -54,5 +52,6 @@ public class ControladorSubMenuClientes implements ActionListener {
         }
     }
 }
+
 
 

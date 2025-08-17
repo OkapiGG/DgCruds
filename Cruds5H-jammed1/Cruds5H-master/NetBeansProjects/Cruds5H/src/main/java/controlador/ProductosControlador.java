@@ -78,20 +78,20 @@ public class ProductosControlador implements ActionListener {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     int idGenerado = rs.getInt(1);
-                    view.jTextField2.setText(String.valueOf(idGenerado)); // muestra idproducto
+                    view.jTextField2.setText(String.valueOf(idGenerado)); 
                 }
             }
             JOptionPane.showMessageDialog(view, "Producto guardado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
             limpiarDespuesDeGuardar();
         } catch (SQLException ex) {
             String state = ex.getSQLState();
-            if ("23503".equals(state)) { // foreign_key_violation
+            if ("23503".equals(state)) { 
                 JOptionPane.showMessageDialog(view, "El ID de proveedor no existe (clave foránea).", "Error", JOptionPane.ERROR_MESSAGE);
                 view.jTextField1.requestFocus();
-            } else if ("23514".equals(state)) { // check_violation (stock >= 0)
+            } else if ("23514".equals(state)) { 
                 JOptionPane.showMessageDialog(view, "Stock debe ser ≥ 0 (violación de CHECK).", "Error", JOptionPane.ERROR_MESSAGE);
                 view.jTextField4.requestFocus();
-            } else if ("23502".equals(state)) { // not_null_violation
+            } else if ("23502".equals(state)) { 
                 JOptionPane.showMessageDialog(view, "Faltan campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(view, "Error SQL (" + state + "): " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -26,13 +26,12 @@ public class ClientesModificarControlador implements ActionListener {
         this.view = view;
         this.con  = con;
 
-        hookPrivateButtons();               
+        hookPrivateButtons();                 
         view.jTextField1.addActionListener(this); 
 
         view.setLocationRelativeTo(null);
         view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
-
 
     private void hookPrivateButtons() {
         try {
@@ -91,7 +90,7 @@ public class ClientesModificarControlador implements ActionListener {
                     view.jTextField2.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(view, "No existe un cliente con ese ID.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                    limpiarCamposExceptoId(); // deja el ID para intentar otro
+                    limpiarTodo(); 
                 }
             }
         } catch (SQLException ex) {
@@ -155,7 +154,7 @@ public class ClientesModificarControlador implements ActionListener {
             int filas = ps.executeUpdate();
             if (filas == 1) {
                 JOptionPane.showMessageDialog(view, "Cliente actualizado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
-                limpiarTodo();
+                limpiarTodo(); // ← limpia TODO tras actualizar con éxito
             } else {
                 JOptionPane.showMessageDialog(view, "No se actualizó el registro (revisa el ID).", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
@@ -194,13 +193,6 @@ public class ClientesModificarControlador implements ActionListener {
         }
     }
 
-    private void limpiarCamposExceptoId() {
-        view.jTextField2.setText("");
-        view.jTextField3.setText("");
-        view.jTextField4.setText("");
-        view.jTextField1.requestFocus();
-    }
-
     private void limpiarTodo() {
         view.jTextField1.setText("");
         view.jTextField2.setText("");
@@ -209,3 +201,4 @@ public class ClientesModificarControlador implements ActionListener {
         view.jTextField1.requestFocus();
     }
 }
+
