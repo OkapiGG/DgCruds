@@ -1,9 +1,19 @@
 package Vista;
 
+import controlador.ClientesModificarControlador;  
+import modelo.conexion;                           
+import java.sql.Connection;
+
 public class ClientesModificar extends javax.swing.JFrame {
 
     public ClientesModificar() {
-        initComponents();
+        initComponents(); 
+        try {
+            Connection con = conexion.getInstancia().getConexion(); 
+            new ClientesModificarControlador(this, con);            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")

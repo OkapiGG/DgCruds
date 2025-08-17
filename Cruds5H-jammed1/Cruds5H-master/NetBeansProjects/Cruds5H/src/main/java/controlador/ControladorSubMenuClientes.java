@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import Vista.SubMenuClientes;
 import Vista.Clientes;       
 import Vista.ClientesModificar; 
-import Vista.ClientesMostar;   
 import Vista.ClientesEliminar; 
 import javax.swing.WindowConstants;
 
@@ -15,9 +14,9 @@ public class ControladorSubMenuClientes implements ActionListener {
 
     public ControladorSubMenuClientes(SubMenuClientes subMenu) {
         this.subMenu = subMenu;
-        subMenu.jButton1.addActionListener(this); 
-        subMenu.jButton2.addActionListener(this);
-        subMenu.jButton3.addActionListener(this);
+        subMenu.jButton1.addActionListener(this);
+        subMenu.jButton2.addActionListener(this); 
+        subMenu.jButton3.addActionListener(this); 
         subMenu.jButton4.addActionListener(this); 
     }
 
@@ -38,13 +37,15 @@ public class ControladorSubMenuClientes implements ActionListener {
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             v.setVisible(true);
             subMenu.dispose();
-        } else if (src == subMenu.jButton3) {    
-            ClientesMostar v = new ClientesMostar();
+
+        } else if (src == subMenu.jButton3) {     
+            ClientesModificar v = new ClientesModificar();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             v.setVisible(true);
             subMenu.dispose();
-        } else if (src == subMenu.jButton4) {     
+
+        } else if (src == subMenu.jButton4) {    
             ClientesEliminar v = new ClientesEliminar();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,4 +54,5 @@ public class ControladorSubMenuClientes implements ActionListener {
         }
     }
 }
+
 

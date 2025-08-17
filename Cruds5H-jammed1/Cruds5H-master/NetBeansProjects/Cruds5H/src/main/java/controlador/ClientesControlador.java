@@ -19,13 +19,9 @@ public class ClientesControlador implements ActionListener {
         this.view = view;
         this.con  = con;
 
-        view.jButton1.addActionListener(this); // Guardar
-        view.jButton2.addActionListener(this); // Regresar a menú
-//        view.jButtonActualizar.addActionListener(this); // Actualizar
-//        view.jButtonEliminar.addActionListener(this);    // Eliminar
-//        view.jButtonListar.addActionListener(this);      // Listar
-
-        view.jTextField1.setEditable(false); // ID autogenerado
+        view.jButton1.addActionListener(this); 
+        view.jButton2.addActionListener(this); 
+        view.jTextField1.setEditable(false); 
         view.setLocationRelativeTo(null);
         view.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
