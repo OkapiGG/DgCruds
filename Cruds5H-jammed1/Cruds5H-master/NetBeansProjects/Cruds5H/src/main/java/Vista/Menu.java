@@ -7,6 +7,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         new MenuControlador(this);
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

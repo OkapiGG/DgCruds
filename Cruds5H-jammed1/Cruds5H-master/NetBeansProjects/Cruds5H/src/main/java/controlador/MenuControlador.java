@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.Menu;
 import Vista.SubMenuClientes; 
-import Vista.Productos;
+import Vista.SubMenuProductos;
 import Vista.SubmenuProveedor;
 import Vista.SubMenuVentas;
 
@@ -29,7 +29,7 @@ public class MenuControlador implements ActionListener {
         v.setVisible(true);
         menu.dispose(); 
     } else if (src == menu.jButton2) {    
-        Productos v = new Productos();
+        SubMenuProductos v = new SubMenuProductos();
         v.setLocationRelativeTo(menu);
         v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         v.setVisible(true);
