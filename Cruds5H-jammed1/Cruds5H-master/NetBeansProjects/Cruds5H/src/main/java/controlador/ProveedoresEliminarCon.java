@@ -1,6 +1,6 @@
 package controlador;
 
-import Vista.ProveedoresEliminar;
+import Vista.ProveedoresEliminar;   // <<< usa la vista correcta
 import Vista.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,18 +12,18 @@ import javax.swing.WindowConstants;
 
 public class ProveedoresEliminarCon implements ActionListener {
 
-    private final ProveedoresEliminarCon view;
+    private final ProveedoresEliminar view; 
     private final Connection con;
 
-    private JButton btnListo;     
-    private JButton btnRegresar;  
+    private JButton btnListo;
+    private JButton btnRegresar;
 
-    public ProveedoresEliminarCon(ProveedoresEliminarCon view, Connection con) {
+    public ProveedoresEliminarCon(ProveedoresEliminar view, Connection con) {
         this.view = view;
         this.con  = con;
 
-        hookPrivateButtons();              
-        view.jTextField1.addActionListener(this); 
+        hookPrivateButtons();
+        view.jTextField1.addActionListener(this);
 
         view.setLocationRelativeTo(null);
         view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -31,12 +31,12 @@ public class ProveedoresEliminarCon implements ActionListener {
 
     private void hookPrivateButtons() {
         try {
-            Field fListo = ProveedoresEliminarCon.class.getDeclaredField("jButton1");
+            Field fListo = view.getClass().getDeclaredField("jButton1");
             fListo.setAccessible(true);
             btnListo = (JButton) fListo.get(view);
             btnListo.addActionListener(this);
 
-            Field fRegresar = ProveedoresEliminarCon.class.getDeclaredField("jButton2");
+            Field fRegresar = view.getClass().getDeclaredField("jButton2");
             fRegresar.setAccessible(true);
             btnRegresar = (JButton) fRegresar.get(view);
             btnRegresar.addActionListener(this);
@@ -80,10 +80,10 @@ public class ProveedoresEliminarCon implements ActionListener {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    view.jTextField2.setText(rs.getString("nombre")     != null ? rs.getString("nombre")     : "");
-                    view.jTextField3.setText(rs.getString("correo")     != null ? rs.getString("correo")     : "");
-                    view.jTextField4.setText(rs.getString("telefono")   != null ? rs.getString("telefono")   : "");
-                    view.jTextField5.setText(rs.getString("direccion")  != null ? rs.getString("direccion")  : "");
+                    view.jTextField2.setText(rs.getString("nombre")    != null ? rs.getString("nombre")    : "");
+                    view.jTextField3.setText(rs.getString("correo")    != null ? rs.getString("correo")    : "");
+                    view.jTextField4.setText(rs.getString("telefono")  != null ? rs.getString("telefono")  : "");
+                    view.jTextField5.setText(rs.getString("direccion") != null ? rs.getString("direccion") : "");
                     view.jTextField1.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(view, "No existe un proveedor con ese ID.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -183,12 +183,15 @@ public class ProveedoresEliminarCon implements ActionListener {
                 String dbTel       = rs.getString("telefono");
                 String dbDireccion = rs.getString("direccion");
 
-                dbNombre    = dbNombre    != null ? dbNombre.trim()    : "";
-                dbCorreo    = dbCorreo    != null ? dbCorreo.trim().toLowerCase() : "";
-                dbTel       = dbTel       != null ? dbTel.trim()       : "";
-                dbDireccion = dbDireccion != null ? dbDireccion.trim() : "";
+                dbNombre    = dbNombre    != null ? dbNombre.trim()                       : "";
+                dbCorreo    = dbCorreo    != null ? dbCorreo.trim().toLowerCase()         : "";
+                dbTel       = dbTel       != null ? dbTel.trim()                          : "";
+                dbDireccion = dbDireccion != null ? dbDireccion.trim()                    : "";
 
-                return vNombre.equals(dbNombre) && vCorreo.equals(dbCorreo) && vTel.equals(dbTel) && vDireccion.equals(dbDireccion);
+                return vNombre.equals(dbNombre)
+                        && vCorreo.equals(dbCorreo)
+                        && vTel.equals(dbTel)
+                        && vDireccion.equals(dbDireccion);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(view, "Error al validar campos contra BD: " + ex.getMessage(),
