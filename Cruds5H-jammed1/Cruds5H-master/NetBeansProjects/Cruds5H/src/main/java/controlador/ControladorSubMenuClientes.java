@@ -3,9 +3,10 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.SubMenuClientes;
-import Vista.Clientes;       
-import Vista.ClientesModificar; 
-import Vista.ClientesEliminar; 
+import Vista.Clientes;
+import Vista.ClientesModificar;
+import Vista.ClientesEliminar;
+import Vista.ClientesMostar;  
 import javax.swing.WindowConstants;
 
 public class ControladorSubMenuClientes implements ActionListener {
@@ -14,15 +15,10 @@ public class ControladorSubMenuClientes implements ActionListener {
 
     public ControladorSubMenuClientes(SubMenuClientes subMenu) {
         this.subMenu = subMenu;
-
         subMenu.jButton1.addActionListener(this); 
+        subMenu.jButton2.addActionListener(this); 
         subMenu.jButton3.addActionListener(this);
         subMenu.jButton4.addActionListener(this); 
-
-    
-        subMenu.jButton2.setEnabled(false);
-        subMenu.jButton2.setToolTipText("No disponible por ahora");
-        
     }
 
     @Override
@@ -36,7 +32,14 @@ public class ControladorSubMenuClientes implements ActionListener {
             v.setVisible(true);
             subMenu.dispose();
 
-        } else if (src == subMenu.jButton3) {   
+        } else if (src == subMenu.jButton2) {   
+            ClientesMostar v = new ClientesMostar();
+            v.setLocationRelativeTo(subMenu);
+            v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            v.setVisible(true);
+            subMenu.dispose();
+
+        } else if (src == subMenu.jButton3) {  
             ClientesModificar v = new ClientesModificar();
             v.setLocationRelativeTo(subMenu);
             v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,6 +55,3 @@ public class ControladorSubMenuClientes implements ActionListener {
         }
     }
 }
-
-
-

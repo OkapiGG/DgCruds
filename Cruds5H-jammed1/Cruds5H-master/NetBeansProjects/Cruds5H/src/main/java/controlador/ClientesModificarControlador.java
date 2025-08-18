@@ -154,7 +154,7 @@ public class ClientesModificarControlador implements ActionListener {
             int filas = ps.executeUpdate();
             if (filas == 1) {
                 JOptionPane.showMessageDialog(view, "Cliente actualizado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
-                limpiarTodo(); // ← limpia TODO tras actualizar con éxito
+                limpiarTodo();
             } else {
                 JOptionPane.showMessageDialog(view, "No se actualizó el registro (revisa el ID).", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
