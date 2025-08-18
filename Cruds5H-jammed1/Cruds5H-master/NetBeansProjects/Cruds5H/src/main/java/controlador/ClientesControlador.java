@@ -24,6 +24,7 @@ public class ClientesControlador implements ActionListener {
         view.jTextField1.setEditable(false); 
         view.setLocationRelativeTo(null);
         view.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        System.out.println("");
     }
 
     @Override
