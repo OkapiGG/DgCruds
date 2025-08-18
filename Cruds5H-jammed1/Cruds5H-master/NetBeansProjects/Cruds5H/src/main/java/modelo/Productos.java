@@ -1,28 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author ep712
- */
 public class Productos {
-
     private int idproducto;
     private int idproveedor;
     private String nombre;
-    private String telefono;
+    private int stock;
 
     public Productos() {
     }
 
-    public Productos(int idproducto, int idproveedor, String nombre, String telefono) {
+    public Productos(int idproducto, int idproveedor, String nombre, int stock) {
         this.idproducto = idproducto;
         this.idproveedor = idproveedor;
         this.nombre = nombre;
-        this.telefono = telefono;
+        this.stock = stock;
     }
 
     public int getIdproducto() {
@@ -49,12 +40,11 @@ public class Productos {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public int getStock() {
+        return stock;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
-
 }

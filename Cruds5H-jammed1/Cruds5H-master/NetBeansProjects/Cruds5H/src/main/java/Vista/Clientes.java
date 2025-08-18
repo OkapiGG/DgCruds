@@ -6,7 +6,6 @@ import java.sql.Connection;
 
 public class Clientes extends javax.swing.JFrame {
 
-    // El constructor
     public Clientes() {
         initComponents();
         try {
