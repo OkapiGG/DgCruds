@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 import Vista.Menu;
 import Vista.SubMenuClientes; 
 import Vista.Productos;
-import Vista.Proveedores;
-import Vista.Ventas;
+import Vista.SubmenuProveedor;
+import Vista.SubMenuVentas;
 
 public class MenuControlador implements ActionListener {
 
@@ -20,33 +20,33 @@ public class MenuControlador implements ActionListener {
         menu.jButton4.addActionListener(this);
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
-        Object src = e.getSource();
-        if (src == menu.jButton1) {          
-            SubMenuClientes v = new SubMenuClientes();
-            v.setLocationRelativeTo(menu);
-            v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            v.setVisible(true);
-            menu.dispose(); 
-        } else if (src == menu.jButton2) {    
-            Productos v = new Productos();
-            v.setLocationRelativeTo(menu);
-            v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            v.setVisible(true);
-            menu.dispose();
-        } else if (src == menu.jButton3) {   
-            Proveedores v = new Proveedores();
-            v.setLocationRelativeTo(menu);
-            v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            v.setVisible(true);
-            menu.dispose();
-        } else if (src == menu.jButton4) {   
-            Ventas v = new Ventas();
-            v.setLocationRelativeTo(menu);
-            v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            v.setVisible(true);
-            menu.dispose();
-        }
+    Object src = e.getSource();
+    if (src == menu.jButton1) {          
+        SubMenuClientes v = new SubMenuClientes();
+        v.setLocationRelativeTo(menu);
+        v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        v.setVisible(true);
+        menu.dispose(); 
+    } else if (src == menu.jButton2) {    
+        Productos v = new Productos();
+        v.setLocationRelativeTo(menu);
+        v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        v.setVisible(true);
+        menu.dispose();
+    } else if (src == menu.jButton3) {   
+        SubmenuProveedor v = new SubmenuProveedor();
+        v.setLocationRelativeTo(menu);
+        v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        v.setVisible(true);
+        menu.dispose();
+    } else if (src == menu.jButton4) {   
+        SubMenuVentas v = new SubMenuVentas();
+        v.setLocationRelativeTo(menu);
+        v.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        v.setVisible(true);
+        menu.dispose();
     }
+  }
 }
+
