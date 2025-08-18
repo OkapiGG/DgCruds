@@ -35,7 +35,7 @@ public class ClientesModificar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Buscar ");
+        jLabel1.setText("Modificar");
 
         jLabel2.setText("ID Cliente ");
 
