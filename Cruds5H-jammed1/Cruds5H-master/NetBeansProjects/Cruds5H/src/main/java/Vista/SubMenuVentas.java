@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import controlador.ControladorSubMenuVentas;
+
 /**
  *
  * @author jammed
@@ -15,6 +17,7 @@ public class SubMenuVentas extends javax.swing.JFrame {
      */
     public SubMenuVentas() {
         initComponents();
+        new ControladorSubMenuVentas(this);
     }
 
     /**

@@ -10,7 +10,10 @@ import java.math.BigDecimal;
 
 public class ReportesDAO {
     private final Connection con;
-    public ReportesDAO(Connection con) { this.con = con; }
+    
+    public ReportesDAO(Connection con) {
+        this.con = con; 
+    }
 
     public ReporteVenta reporteVenta(int idVenta) throws SQLException {
         String sql = "SELECT idproducto, nombre, cantidad, precio_unitario, subtotal, total_items, total_pagar " +

@@ -82,39 +82,5 @@ public class ReporteVentaControlador implements ActionListener {
             JOptionPane.showMessageDialog(view, "Error al obtener reporte: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    private void exportarCSV() {
-        DefaultTableModel m = (DefaultTableModel) view.jTable1.getModel();
-        if (m.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(view, "No hay datos para exportar.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        JFileChooser ch = new JFileChooser();
-        ch.setSelectedFile(new java.io.File("reporte_venta.csv"));
-        if (ch.showSaveDialog(view) != JFileChooser.APPROVE_OPTION) return;
-
-        try (FileWriter fw = new FileWriter(ch.getSelectedFile())) {
-            fw.write("idproducto,nombre,cantidad,precio_unitario,subtotal\n");
-            for (int i = 0; i < m.getRowCount(); i++) {
-                fw.write(m.getValueAt(i,0)+","+
-                         csv(m.getValueAt(i,1))+","+
-                         m.getValueAt(i,2)+","+
-                         m.getValueAt(i,3)+","+
-                         m.getValueAt(i,4)+"\n");
-            }
-            fw.write("\nTotal items," + view.jLabelTotalItems.getText() + "\n");
-            fw.write("Total a pagar," + view.jLabelTotalPagar.getText() + "\n");
-            JOptionPane.showMessageDialog(view, "Exportado correctamente.", "OK", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(view, "No se pudo exportar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private String csv(Object v) {
-        if (v == null) return "";
-        String s = v.toString();
-        if (s.contains(",") || s.contains("\"")) s = "\""+s.replace("\"","\"\"")+"\"";
-        return s;
-    }
 }
 
